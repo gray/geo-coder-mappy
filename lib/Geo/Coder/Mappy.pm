@@ -33,7 +33,7 @@ sub new {
         $self->ua->default_header(accept_encoding => 'gzip,deflate');
     }
 
-    croak q('https' requires Crypt::SSLeay or IO::Socket::SSL)
+    croak q('https' requires LWP::Protocol::https)
         if $params{https} and not $self->ua->is_protocol_supported('https');
 
     return $self;
@@ -126,6 +126,7 @@ functionality of the Mappy AJAX API.
     $geocoder = Geo::Coder::Navteq->new('Your Mappy AJAX API token')
     $geocoder = Geo::Coder::Navteq->new(
         token => 'Your Mappy AJAX API token',
+        https => 1,
         debug => 1,
     )
 

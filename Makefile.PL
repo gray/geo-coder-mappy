@@ -2,37 +2,30 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 
-my @recommends;
-unless (eval { require IO::Socket::SSL; 1 }) {
-    push @recommends, 'Crypt::SSLeay' => 0;
-}
-
 my %conf = (
-    NAME           => 'Geo::Coder::Mappy',
-    AUTHOR         => 'gray <gray@cpan.org>',
-    LICENSE        => 'perl',
-    VERSION_FROM   => 'lib/Geo/Coder/Mappy.pm',
-    ABSTRACT_FROM  => 'lib/Geo/Coder/Mappy.pm',
-    PREREQ_PM      => {
+    NAME          => 'Geo::Coder::Mappy',
+    AUTHOR        => 'gray <gray@cpan.org>',
+    LICENSE       => 'perl',
+    VERSION_FROM  => 'lib/Geo/Coder/Mappy.pm',
+    ABSTRACT_FROM => 'lib/Geo/Coder/Mappy.pm',
+    PREREQ_PM     => {
         'Encode'         => 0,
         'JSON'           => 2.0,
-        'LWP::UserAgent' => 0,
+        'LWP::UserAgent' => 6.02,
         'URI'            => 1.36,
     },
-    BUILD_REQUIRES => {
-        'Test::More' => 0.82,
-    },
+    BUILD_REQUIRES => { 'Test::More' => 0.82, },
     META_MERGE     => {
-        resources  => {
+        resources =>  {
             repository => 'http://github.com/gray/geo-coder-mappy',
         },
         recommends => {
-            'JSON::XS' => 2.0,
-            @recommends,
+            'JSON::XS'             => 2.0,
+            'LWP::Protocol::https' => 6.02,
         },
     },
-    dist           => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean          => { FILES => 'Geo-Coder-Mappy-*' },
+    dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    clean => { FILES    => 'Geo-Coder-Mappy-*' },
 );
 
 my $eumm_version =  do {
