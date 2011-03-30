@@ -123,8 +123,8 @@ functionality of the Mappy AJAX API.
 
 =head2 new
 
-    $geocoder = Geo::Coder::Navteq->new('Your Mappy AJAX API token')
-    $geocoder = Geo::Coder::Navteq->new(
+    $geocoder = Geo::Coder::Mappy->new('Your Mappy AJAX API token')
+    $geocoder = Geo::Coder::Mappy->new(
         token => 'Your Mappy AJAX API token',
         https => 1,
         debug => 1,
